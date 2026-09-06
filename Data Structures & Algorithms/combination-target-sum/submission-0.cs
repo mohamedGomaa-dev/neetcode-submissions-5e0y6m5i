@@ -1,0 +1,21 @@
+public class Solution {
+
+        List<List<int>> res = new List<List<int>>();
+
+    public List<List<int>> CombinationSum(int[] nums, int target) {
+        Backtrack(0, [], 0, nums, target);
+        return res;
+    }
+
+    public void Backtrack(int i, List<int> cur, int total, int[] nums, int target) {
+        if (total == target) {
+            res.Add(new List<int>(cur));
+            return;
+        }
+        if (total > target || i >= nums.Length) return;
+        cur.Add(nums[i]);
+        Backtrack(i, cur, total + nums[i], nums, target);
+        cur.RemoveAt(cur.Count - 1);
+        Backtrack(i + 1, cur, total, nums, target);
+    }
+}
